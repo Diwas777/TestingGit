@@ -1,0 +1,29 @@
+<script src="moment.js"></script>
+<script>
+
+
+
+function intervals(startString, endString) {
+    var start = moment(startString, 'hh:mm a');
+    var end = moment(endString, 'hh:mm a');
+
+    // round starting minutes up to nearest 15 (12 --> 15, 17 --> 30)
+    // note that 59 will round up to 60, and moment.js handles that correctly
+    start.minutes(Math.ceil(start.minutes() / 15) * 15);
+
+    var result = [];
+
+    var current = moment(start);
+
+    while (current <= end) {
+        result.push(current.format('HH:mm'));
+        current.add(15, 'minutes');
+            alert(result);
+    }
+     
+    return result;
+}
+
+console.log(intervals('4:35 PM', '8:06 AM'));
+
+</script>
